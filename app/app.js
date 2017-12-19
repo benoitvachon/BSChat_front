@@ -14,8 +14,8 @@ var studycom = angular.module('myApp', [
     'myApp.topicController',
     'myApp.version'
 ]).constant('urls', {
-    BASE: 'http://studycom.dev',
-    BASE_API: 'http://localhost/Studycom/public/api'
+    BASE: 'https://bschat.guillaumeperes.fr',
+    BASE_API: 'https://api.bschat.guillaumeperes.fr/api'
 }).config(['$locationProvider', '$routeProvider', '$httpProvider', '$qProvider', function ($locationProvider, $routeProvider, $httpProvider, $qProvider, $http) {
 
     $qProvider.errorOnUnhandledRejections(false);

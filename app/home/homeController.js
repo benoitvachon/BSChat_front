@@ -4,7 +4,7 @@ angular.module('myApp.homeController', ['ngRoute'])
 
         $scope.user = null;
         if (!Auth.isConnected()) {
-            window.location = 'http://localhost/StudycomClient/app/#/';
+            window.location = 'https://bschat.guillaumeperes.fr/#/';
         }
 
     });

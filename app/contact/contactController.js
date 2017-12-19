@@ -3,7 +3,7 @@ angular.module('myApp.contactController', ['ngRoute'])
     .controller('contactController', function ($scope, $mdDialog, $http,$location, $rootScope, Auth, contact) {
 
         if (!Auth.isConnected()) {
-            window.location = 'http://localhost/StudycomClient/app/#/';
+            window.location = 'https://bschat.guillaumeperes.fr/#/';
         }
         Auth.user().then(function(response) {
             $scope.user = response;
@@ -26,7 +26,7 @@ angular.module('myApp.contactController', ['ngRoute'])
         });
 
         $scope.getContact = function () {
-            $http.get('http://localhost/Studycom/public/api/contact/'+contact.id+'/get').then(function(response) {
+            $http.get('https://api.bschat.guillaumeperes.fr/api/contact/'+contact.id+'/get').then(function(response) {
                 $scope.contact = response.data[0];
                 $scope.getTopic();
             });
@@ -34,23 +34,23 @@ angular.module('myApp.contactController', ['ngRoute'])
 
         $scope.getTopic = function () {
 
-            $http.get('http://localhost/Studycom/public/api/user/'+$scope.user.id+'/contact/topic/' + $scope.contact.id +'/get').then(function(response) {
+            $http.get('https://api.bschat.guillaumeperes.fr/api/user/'+$scope.user.id+'/contact/topic/' + $scope.contact.id +'/get').then(function(response) {
                 $scope.topic = response.data[0];
                 $scope.getTopicMessages($scope.topic.id);
             });
         };
 
         $scope.getTopicMessages = function (idTopic) {
-            $http.get('http://localhost/Studycom/public/api/topic/'+idTopic+'/posts').
+            $http.get('https://api.bschat.guillaumeperes.fr/api/topic/'+idTopic+'/posts').
             then(function (response) {
                 $scope.messages = response.data;
             });
         };
 
         $scope.deleteUser = function () {
-            $http.get('http://localhost/Studycom/public/api/user/'+$scope.user.id+'/contact/'+$scope.contact.id+'/delete').
+            $http.get('https://api.bschat.guillaumeperes.fr/api/user/'+$scope.user.id+'/contact/'+$scope.contact.id+'/delete').
             then(function (response) {
-                window.location = 'http://localhost/StudycomClient/app/#/home';
+                window.location = 'https://bschat.guillaumeperes.fr/#/home';
 
             });
         };
@@ -61,7 +61,7 @@ angular.module('myApp.contactController', ['ngRoute'])
                 'idTopic': $scope.topic.id,
                 'text': $scope.message
             };
-            $http.post('http://localhost/Studycom/public/api/topic/sendMessage', data).
+            $http.post('https://api.bschat.guillaumeperes.fr/api/topic/sendMessage', data).
             then(function (response) {
                 $scope.socket.emit('newMessage', response.data);
             });
@@ -116,7 +116,7 @@ angular.module('myApp.contactController', ['ngRoute'])
                 });
 
                 $scope.getAuthor = function () {
-                    $http.get('http://localhost/Studycom/public/api/author/'+idAuthor+'/get')
+                    $http.get('https://api.bschat.guillaumeperes.fr/api/author/'+idAuthor+'/get')
                         .then(function(response) {
 
                             $scope.author = response.data[0];
@@ -124,28 +124,28 @@ angular.module('myApp.contactController', ['ngRoute'])
                 };
 
                 $scope.getContacts = function () {
-                    $http.get('http://localhost/Studycom/public/api/user/'+$scope.user.id+'/contacts/get')
+                    $http.get('https://api.bschat.guillaumeperes.fr/api/user/'+$scope.user.id+'/contacts/get')
                         .then(function(response) {
                             $scope.contacts = response.data;
                         })
                 };
 
                 $scope.getNumberOfContacts = function () {
-                    $http.get('http://localhost/Studycom/public/api/user/'+idAuthor+'/number/contacts')
+                    $http.get('https://api.bschat.guillaumeperes.fr/api/user/'+idAuthor+'/number/contacts')
                         .then(function(response) {
                             $scope.numberOfContacts = response.data;
                         })
                 };
 
                 $scope.getMutualContacts = function () {
-                    $http.get('http://localhost/Studycom/public/api/user/'+$scope.user.id+'/user2/'+idAuthor+'/mutual/contacts')
+                    $http.get('https://api.bschat.guillaumeperes.fr/api/user/'+$scope.user.id+'/user2/'+idAuthor+'/mutual/contacts')
                         .then(function(response) {
                             $scope.mutualContacts = response.data;
                         })
                 };
 
                 $scope.getMutualTopics = function () {
-                    $http.get('http://localhost/Studycom/public/api/user/'+$scope.user.id+'/user2/'+idAuthor+'/mutual/topics')
+                    $http.get('https://api.bschat.guillaumeperes.fr/api/user/'+$scope.user.id+'/user2/'+idAuthor+'/mutual/topics')
                         .then(function(response) {
                             $scope.mutualTopics = response.data;
                         })
@@ -169,7 +169,7 @@ angular.module('myApp.contactController', ['ngRoute'])
                         email: $scope.author.email
                     };
 
-                    $http.post('http://localhost/Studycom/public/api/user/'+ $scope.user.id+'/contact/request', formData)
+                    $http.post('https://api.bschat.guillaumeperes.fr/api/user/'+ $scope.user.id+'/contact/request', formData)
                         .then(function(response) {
                             $mdDialog.hide();
                         })

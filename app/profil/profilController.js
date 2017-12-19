@@ -5,7 +5,7 @@ angular.module('myApp.profilController', ['ngRoute'])
 .controller('profilController', function($scope, $http, Auth) {
 
     if (!Auth.isConnected()) {
-        window.location = 'http://localhost/StudycomClient/app/#/';
+        window.location = 'https://bschat.guillaumeperes.fr/#/';
     }
     $scope.userEdit = false;
 
@@ -16,7 +16,7 @@ angular.module('myApp.profilController', ['ngRoute'])
 
     $scope.updateUser = function () {
 
-        $http.post('http://localhost/Studycom/public/api/user/update', $scope.userToEdit).
+        $http.post('https://api.bschat.guillaumeperes.fr/api/user/update', $scope.userToEdit).
         then(function (response) {
             $scope.user = $scope.userToEdit;
             $scope.editProfile();

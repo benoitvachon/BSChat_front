@@ -31,7 +31,7 @@ studycom.factory('Auth', ['$http', '$localStorage', function ($http, $localStora
     function getUser() {
         if(typeof $localStorage.token !== 'undefined') {
             var tokenClaim = getClaimsFromToken();
-            var userPromise = $http.get('http://localhost/Studycom/public/api/user/'+tokenClaim.sub).then(function (response) {
+            var userPromise = $http.get('https://api.bschat.guillaumeperes.fr/api/user/'+tokenClaim.sub).then(function (response) {
                 return response.data;
             });
             return userPromise;
@@ -43,26 +43,26 @@ studycom.factory('Auth', ['$http', '$localStorage', function ($http, $localStora
 
     return {
         signup: function (data, success, error) {
-            $http.post('http://localhost/Studycom/public/api/signup', data).then(function(response) {
+            $http.post('https://api.bschat.guillaumeperes.fr/api/signup', data).then(function(response) {
                 if(response.data == '') {
                     error();
                 }
                 else {
                     $localStorage.token = response.data.token;
-                    window.location = 'http://localhost/StudycomClient/app/#/home';
+                    window.location = 'https://bschat.guillaumeperes.fr/#/home';
                     success();
                 }
 
             });
         },
         signin: function (data, success, error) {
-            $http.post('http://localhost/Studycom/public/api/signin', data).then(function(response){
+            $http.post('https://api.bschat.guillaumeperes.fr/api/signin', data).then(function(response){
                 if(response.data == false) {
                     error();
                 }
                 else {
                     $localStorage.token = response.data.token;
-                    window.location = 'http://localhost/StudycomClient/app/#/home';
+                    window.location = 'https://bschat.guillaumeperes.fr/#/home';
                     success();
                 }
 
@@ -70,9 +70,9 @@ studycom.factory('Auth', ['$http', '$localStorage', function ($http, $localStora
         },
         logout: function (data) {
             tokenClaims = {};
-            $http.post('http://localhost/Studycom/public/api/logout', data).then(function(response) {
+            $http.post('https://api.bschat.guillaumeperes.fr/api/logout', data).then(function(response) {
                 delete $localStorage.token;
-                window.location = 'http://localhost/StudycomClient/app/#/';
+                window.location = 'https://bschat.guillaumeperes.fr/#/';
             });
 
         },
