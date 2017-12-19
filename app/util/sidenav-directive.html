@@ -1,0 +1,70 @@
+<md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-whiteframe="4">
+    <md-toolbar hide-gt-md>
+        <h1>Studycom</h1>
+    </md-toolbar>
+    <md-content>
+        <div layout="row" layout-align="space-between center">
+            <md-menu-item>
+                <a href="#/profil">{{user.name}}</a>
+            </md-menu-item>
+            <md-menu md-offset="120 30">
+                <md-button ng-click="$mdMenu.open($event)" class="md-raised">
+                    <md-icon md-svg-src="icons/add.svg"></md-icon>
+                    <md-tooltip md-direction="top">Nouveau</md-tooltip>
+                </md-button>
+                <md-menu-content class="md-padding sidenav-menu">
+                    <md-menu-item>
+                        <md-icon flex="20" md-svg-src="icons/forum.svg"></md-icon>
+                        <md-button ng-click="openAddTopicDialog()">Nouveau topic</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-icon flex="20" md-svg-src="icons/person_add.svg"></md-icon>
+                        <md-button ng-click="openAddContactDialog()">Nouveau contact</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+        <md-tabs md-align-tabs md-dynamic-height md-border-bottom md-selected="selectedTab">
+            <md-tab flex label="Topics">
+                <md-content class="md-padding">
+                    <md-list>
+                        <md-list-item ng-repeat="topic in topics">
+                            <a href="#/topic/{{topic.id}}">{{topic.nom}}</a>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab flex label="Contacts">
+                <md-content class="md-padding">
+                    <md-list>
+                        <md-list-item ng-repeat="contact in contacts">
+                            <a href="#/contact/{{contact.id}}">{{contact.name}}</a>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab flex label="Demandes d'ajout">
+                <md-content class="md-padding">
+                    <md-list>
+                        <md-list-item ng-repeat="request in requests" layout="row" layout-align="space-between center">
+                            <p>{{request.name}}</p>
+                            <div>
+                                <md-button ng-click="acceptRequest(request.id)"
+                                           class="md-raised md-primary mini-button">
+                                    <md-icon md-svg-src="icons/check_white.svg"></md-icon>
+                                </md-button>
+                                <md-button ng-click="refuseRequest(request.id)" class="md-raised mini-button">
+                                    <md-icon md-svg-src="icons/clear.svg"></md-icon>
+                                </md-button>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</md-sidenav>

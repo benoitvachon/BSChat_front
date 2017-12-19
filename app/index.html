@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Studycom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bahiana" rel="stylesheet">
+    <link href="bower_components/materialize/bin/materialize.css" type="text/css" rel="stylesheet">
+    <link href="css/layout.css" type="text/css" rel="stylesheet">
+    <link href="css/material-studycom.css" type="text/css" rel="stylesheet">
+    <link href="bower_components/angular-material/angular-material.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<md-toolbar ng-controller="navbarController" class="z-depth-3" aria-label="menu" layout="row" layout-align="space-between center">
+    <h1 hide-md hide-sm hide-xs>
+        <a ng-if="isConnected()" href="#/home">Studycom</a>
+        <a ng-if="!isConnected()" href="#/">Studycom</a>
+    </h1>
+    <md-button hide-gt-md ng-click="openSideNav()" aria-label="open menu" class="sidenav-menu-open-button">
+        <md-icon md-svg-src="icons/school_white.svg"></md-icon>
+    </md-button>
+    <div ng-if="isConnected()">
+
+        <md-button class="md-raised" ng-click="logout()">deconnexion</md-button>
+    </div>
+    <div ng-if="!isConnected()">
+        <md-button name="inscription" class="md-raised" aria-label="inscription" ng-click="showInscription()">inscription</md-button>
+        <md-button name=connexion" class="md-primary md-raised" aria-label="connexion" ng-click="showConnexion()">connexion</md-button>
+    </div>
+
+</md-toolbar>
+
+<div class="global-view" ng-view></div>
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="bower_components/materialize/bin/materialize.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/ng-scroll-glue/dist/ng-scroll-glue.min.js"></script>
+<script src="app.js"></script>
+<script src="js/socket.io.js"></script>
+<script src="js/service/auth.js"></script>
+<script src="js/service/scroll-button-directive.js"></script>
+<script src="js/service/token-check-provider.js"></script>
+<script src="profil/profilController.js"></script>
+<script src="welcome/welcomeController.js"></script>
+<script src="topic/topicController.js"></script>
+<script src="home/homeController.js"></script>
+<script src="contact/contactController.js"></script>
+<script src="util/sidenav-directive.js"></script>
+<script src="util/navbarController.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

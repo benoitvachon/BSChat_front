@@ -1,0 +1,129 @@
+<section layout="row" class="topic-section">
+    <studycom-sidenav></studycom-sidenav>
+    <section layout="column" flex="100">
+        <div class="topic-name" layout="row" layout-align="space-between center">
+            <h1>{{topic.nom}}</h1><label><input type="checkbox" value="true"></label>
+            <md-button  ng-click="toggleTopicMenu()" class="md-primary md-raised">
+                <md-icon md-svg-src="icons/menu_white.svg"></md-icon>
+                <md-tooltip>Topic infos</md-tooltip>
+            </md-button>
+        </div>
+        <div class="topic-view" layout="row">
+            <div class="topic-feed" flex="grow" scroll-glue>
+
+                <md-grid-list md-cols="1" md-row-height="200px">
+                    <md-grid-tile ng-repeat="message in messages | orderBy: 'dateCreation' ">
+                        <div layout="row" flex="100" layout-align="{{leftOrRight(message)}}">
+                            <md-card class="topic-message-card {{authMessage(message)}}" flex="30">
+                                <md-card-header layout="row" layout-align="space-around center">
+                                    <md-card-avatar>
+                                        <img class="md-user-avatar" src="img/avatar.png">
+                                    </md-card-avatar>
+                                    <md-card-title layout="row" layout-align="space-between center">
+                                        <p>
+                                            <a ng-click="openUserProfileModal(message.idAuthor)">{{message.name}}</a>
+                                        </p>
+                                        <md-icon ng-if="message.idtype==2" md-svg-src="icons/school_white.svg"></md-icon>
+                                    </md-card-title>
+                                </md-card-header>
+                                <md-divider></md-divider>
+                                <md-card-content class="message-content">
+                                    <p class="message-text">{{message.text}}</p>
+                                </md-card-content>
+                                <md-divider></md-divider>
+                                <md-card-content class="message-infos" layout="row" layout-align="space-between center">
+                                    <p class="message-date">{{message.dateCreation | date : format : timezone}}</p>
+                                    <md-icon ng-if="message.idAuthor !== user.id && message.idtype==1" class="message-valid-send" md-svg-src="icons/done.svg"></md-icon>
+                                    <md-icon ng-if="message.idtype==2 || message.idAuthor == user.id" class="message-valid-send" md-svg-src="icons/check_white.svg"></md-icon>
+                                </md-card-content>
+                            </md-card>
+                        </div>
+                    </md-grid-tile>
+                </md-grid-list>
+
+            </div>
+
+            <div class="topic-sidenav" flex="35" flex-gt-md="20" ng-show="showTopicMenu" md-whiteframe="3">
+
+                <md-toolbar layout="row" layout-align="space-between center">
+                    <h3>{{topic.nom}}</h3>
+                    <md-menu md-offset="80 80">
+                        <md-button class="topic-sidenav-menu-button mini-button" aria-label="Ouvrir" ng-click="$mdMenu.open($event)">
+                            <md-icon md-svg-src="icons/more_vertical.svg"></md-icon>
+                        </md-button>
+                        <md-menu-content class="md-padding topic-sidenav-menu">
+                            <md-menu-item ng-show="topic.idAdmin==user.id">
+                                <md-icon flex="20" md-svg-src="icons/edit_black.svg"></md-icon>
+                                <md-button ng-click="openModifyTopicNameModal()">Editer</md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="topic.idAdmin!=user.id">
+                                <md-icon flex="20" md-svg-src="icons/remove_circle.svg"></md-icon>
+                                <md-button ng-click="leaveTopic()">Quitter</md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-show="topic.idAdmin==user.id">
+                                <md-icon flex="20" md-svg-src="icons/delete.svg"></md-icon>
+                                <md-button ng-click="deleteTopic()">Supprimer</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </md-toolbar>
+
+                <md-tabs md-align-tabs md-dynamic-height md-border-bottom>
+                    <md-tab aria-label="Membres" md-selected>
+                        <md-tab-label>
+                            <md-icon md-svg-src="icons/group.svg"></md-icon>
+                        </md-tab-label>
+                        <md-tab-body>
+                            <md-list-item ng-repeat="topicuser in users">
+                                <p>{{topicuser.name}}</p>
+                            </md-list-item>
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab ng-if="topic.idAdmin==user.id" aria-label="Ajouter">
+                        <md-tab-label>
+                            <md-icon md-svg-src="icons/group_add.svg"></md-icon>
+                        </md-tab-label>
+                        <md-tab-body ng-if="isTopicMembersLoaded">
+                            <md-list-item ng-repeat="contact in contacts" layout="row" ng-if="isContactToAddToTopic(contact)">
+                                <p>{{contact.name}}</p>
+                                <md-button aria-label="Ajouter" class="mini-button" ng-click="addTopicUser(contact)">
+                                    <md-icon md-svg-src="icons/add.svg"></md-icon>
+                                    <md-tooltip>Ajouter {{contact.name}} au topic</md-tooltip>
+                                </md-button>
+                            </md-list-item>
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab ng-if="topic.idAdmin==user.id" aria-label="Membres">
+
+                        <md-tab-label>
+                            <md-icon md-svg-src="icons/remove_circle.svg"></md-icon>
+                        </md-tab-label>
+                        <md-tab-body>
+                            <md-list>
+                                <md-list-item ng-repeat="topicuser in users" layout="row" ng-if="topicuser.id !== user.id">
+                                    <p>{{topicuser.name}}</p>
+                                    <md-button aria-label="Supprimer" ng-click="deleteUserFromTopic(topicuser.id)" class="mini-button">
+                                        <md-icon md-svg-src="icons/delete.svg"></md-icon>
+                                    </md-button>
+                                </md-list-item>
+                            </md-list>
+                        </md-tab-body>
+                    </md-tab>
+                </md-tabs>
+
+            </div>
+        </div>
+
+        <div layout="row" layout-align="space-between center" class="topic-response-bar md-padding" md-whiteframe="8">
+            <md-input-container class="message-container" flex="grow">
+                <textarea md-maxlength="200" aria-label="message" ng-model="message"></textarea>
+            </md-input-container>
+            <md-button  class="md-raised topic-send-message-button" ng-click="addMessage()" ng-disabled="message==''">
+                <md-icon md-svg-src="icons/chat_bubble_white.svg"></md-icon>
+                <md-tooltip md-direction="top">Envoyer un message</md-tooltip>
+            </md-button>
+
+        </div>
+
+    </section>
+</section>

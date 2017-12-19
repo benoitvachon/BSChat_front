@@ -1,0 +1,25 @@
+{
+  "name": "Studycom Client",
+  "description": "Make Studies Great Again",
+  "version": "1.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.6.4",
+    "angular-route": "~1.6.4",
+    "angular-loader": "~1.5.0",
+    "angular-mocks": "~1.5.0",
+    "angular-resource": "~1.6.4",
+    "html5-boilerplate": "^5.3.0",
+    "jquery": "^3.2.1",
+    "materialize": "^0.98.2",
+    "ngstorage": "^0.3.11",
+    "socket.io": "^2.0.3",
+    "ng-scroll-glue": "^2.0.10",
+    "angular-messages": "^1.6.4"
+  },
+  "resolutions": {
+    "angular": "1.6.4"
+  }
+}

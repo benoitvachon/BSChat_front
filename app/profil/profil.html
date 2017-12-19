@@ -1,0 +1,38 @@
+<h1>Profile</h1>
+<div layout="row" layout-align="center center">
+    <md-card flex="40">
+        <md-card-header layout="column">
+            <div layout="row" layout-align="space-between center">
+
+                <md-button class="md-raised" ng-click="goBack()">Retour</md-button>
+                <md-button class="md-raised" ng-click="editProfile()">Editer</md-button>
+            </div>
+            <h3>{{user.name}}</h3>
+        </md-card-header>
+        <md-card-content layout="column">
+            <md-input-container>
+                <label>Nom</label>
+                <input type="text" ng-model="userToEdit.name" ng-disabled="!userEdit" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Login</label>
+                <input type="text" ng-model="userToEdit.login" ng-disabled="!userEdit" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Adresse e-mail</label>
+                <input type="email" ng-model="userToEdit.email" ng-disabled="!userEdit" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Type de compte</label>
+                <md-select type ="int" ng-model="userToEdit.idtype" ng-disabled="!userEdit" required>
+                    <md-option ng-value="1" selected="user.idtype == 1">Etudiant</md-option>
+                    <md-option ng-value="2" selected="user.idtype == 2">Professeur</md-option>
+                </md-select>
+            </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="space-between center">
+            <md-button class="md-raised" ng-click="cancelEdition()" ng-disabled="!userEdit">Annuler</md-button>
+            <md-button class="md-primary" ng-click="updateUser()" ng-disabled="!userEdit">Valider</md-button>
+        </md-card-actions>
+    </md-card>
+</div>
