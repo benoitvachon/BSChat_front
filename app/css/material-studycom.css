@@ -27,7 +27,7 @@ md-dialog .md-input {
 
  h3 {
     text-transform: uppercase;
-    font-family: 'Bahiana', cursive;
+    font-family: 'Arial', cursive;
 }
 
 
@@ -35,7 +35,7 @@ h1 {
     font-size: 32px;
     margin: 0;
     padding: 15px;
-    font-family: 'Bahiana', cursive;
+    font-family: 'Arial', cursive;
     letter-spacing: 2.5px;
 }
 h1 > a {
