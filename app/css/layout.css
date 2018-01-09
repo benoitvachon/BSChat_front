@@ -11,11 +11,11 @@ html, body {
     background-color: transparent !important;
 }
 a {
-    color: #00695c;
+    color: #448AFF;
 }
 md-tabs md-ink-bar {
-    background-color: #80CBC4;
-    color: #80CBC4;
+    background-color: #BBDEFB;
+    color: #BBDEFB;
 }
 .md-tab.md-active {
     color: black !important;
@@ -27,7 +27,7 @@ textarea {
 /* END MATERIALIZE  */
 md-toolbar {
     z-index: 998;
-    background-color: #00695c !important;
+    background-color: #448AFF !important;
     height: 10%;
 
 }
@@ -36,7 +36,7 @@ md-toolbar {
     height: 90%;
 }
 md-sidenav {
-    color: #00695c;
+    color: #448AFF;
 }
 
 .sidenav-menu {
@@ -123,7 +123,7 @@ md-sidenav {
 }
 
 .topic-response-bar {
-    background-color: #80CBC4 !important;
+    background-color: #BBDEFB !important;
     height: 12%;
 }
 
@@ -140,7 +140,7 @@ md-sidenav {
 }
 
 .topic-response-bar .topic-send-message-button {
-    background-color: #00695c !important;
+    background-color: #448AFF !important;
     margin: 0;
     padding-left: 8px;
     width: 128px;
@@ -151,12 +151,12 @@ md-sidenav {
 }
 
 .topic-auth-message {
-    background-color: #80CBC4;
+    background-color: #BBDEFB;
     color: white;
 }
 
 .topic-prof-message {
-    background-color: #00695c;
+    background-color: #448AFF;
     color: white;
 }
 

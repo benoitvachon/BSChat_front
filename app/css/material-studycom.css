@@ -1,16 +1,16 @@
 .md-button.md-raised {
-    color: #00695c;
+    color: #448AFF;
 }
 
 .md-button.md-primary.md-raised {
-    background-color: #80CBC4 !important;
+    background-color: #BBDEFB !important;
 }
 .md-button.md-primary.md-raised.md-focused {
-    background-color: #80CBC4 !important;
+    background-color: #BBDEFB !important;
 }
 
 .md-button.md-primary.md-raised:not([disabled]):hover {
-    background-color: #80CBC4 !important;
+    background-color: #BBDEFB !important;
 }
 md-input-container .md-input[disabled] {
     font-weight: 500;
