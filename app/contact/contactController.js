@@ -12,7 +12,7 @@ angular.module('myApp.contactController', ['ngRoute'])
 
         });
         $scope.message = '';
-        $scope.socket = io.connect('http://localhost:4444');
+        $scope.socket = io.connect('https://api.bschat.guillaumeperes.fr/');
         $scope.socket.on('connect', function () {
             $scope.socket.emit('joinChannel', 'channel/' + contact.id);
 

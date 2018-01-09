@@ -5,7 +5,7 @@
             <h1>{{topic.nom}}</h1><label><input type="checkbox" value="true"></label>
             <md-button  ng-click="toggleTopicMenu()" class="md-primary md-raised">
                 <md-icon md-svg-src="icons/menu_white.svg"></md-icon>
-                <md-tooltip>Topic infos</md-tooltip>
+                <md-tooltip>Infos de la conversation</md-tooltip>
             </md-button>
         </div>
         <div class="topic-view" layout="row">
@@ -88,7 +88,7 @@
                                 <p>{{contact.name}}</p>
                                 <md-button aria-label="Ajouter" class="mini-button" ng-click="addTopicUser(contact)">
                                     <md-icon md-svg-src="icons/add.svg"></md-icon>
-                                    <md-tooltip>Ajouter {{contact.name}} au topic</md-tooltip>
+                                    <md-tooltip>Ajouter {{contact.name}} à la conversation</md-tooltip>
                                 </md-button>
                             </md-list-item>
                         </md-tab-body>
