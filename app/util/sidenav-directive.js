@@ -22,7 +22,7 @@ studycom.directive("studycomSidenav", function ($http) {
 
             $scope.selectTab = function(){
                 var splitUrl = $scope.url.split('/');
-                var typeTab = splitUrl[6];
+                var typeTab = splitUrl[4];
 
                 if(typeTab == 'contact'){
                     return 1;

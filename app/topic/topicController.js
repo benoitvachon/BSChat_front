@@ -33,7 +33,7 @@ angular.module('myApp.topicController', ['ngRoute'])
 
         $scope.getTopicByUrl = function () {
             var splitUrl = $scope.url.split('/');
-            var idTopic = splitUrl[7];
+            var idTopic = splitUrl[5];
             $http.get('https://api.bschat.guillaumeperes.fr/api/topic/' + idTopic + '/get').then(function (response) {
                 $scope.topic = response.data[0];
                 $scope.getTopicMessages($scope.topic.id);
@@ -305,7 +305,7 @@ angular.module('myApp.topicController', ['ngRoute'])
                 $scope.modifyTopicName = function () {
 
                     var splitUrl = $scope.url.split('/');
-                    var idTopic = splitUrl[7];
+                    var idTopic = splitUrl[5];
 
                     var formData = {
                         name: $scope.name,
